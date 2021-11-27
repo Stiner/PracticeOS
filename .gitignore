@@ -1,14 +1,14 @@
 cd_bundle
 
-practice/*.bin
-practice/*.lst
-practice/*.bim
-practice/*.gas
-practice/*.hrb
-practice/*.map
-practice/*.obj
-practice/haribote.img
-practice/haribote.sys
-practice/bootpack.nas
+practice**/*.bin
+practice**/*.lst
+practice**/*.bim
+practice**/*.gas
+practice**/*.hrb
+practice**/*.map
+practice**/*.obj
+practice**/haribote.img
+practice**/haribote.sys
+practice**/bootpack.nas
 
 z_tools/qemu/fdimage0.bin

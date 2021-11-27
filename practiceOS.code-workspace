@@ -1,10 +1,13 @@
 {
 	"folders": [
 		{
+			"path": "z_tools\\qemu"
+		},
+		{
 			"path": "practice"
 		},
 		{
-			"path": "z_tools\\qemu"
+			"path": "practice_nask"
 		}
 	],
 	"settings": {}
