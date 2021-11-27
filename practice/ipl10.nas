@@ -10,21 +10,21 @@ CYLS	EQU		10				; 어디까지 Read할까
 		JMP		entry
 		DB		0x90
 		DB		"HARIBOTE"		; boot sector의 이름을 자유롭게 써도 좋다(8바이트)
-		DW		512			; 1섹터 크기(512로 해야 함)
-		DB		1			; 클러스터 크기(1섹터로 해야 함)
-		DW		1			; FAT가 어디에서 시작될까(보통은 1 섹터째부터)
-		DB		2			; FAT 개수(2로 해야 함)
-		DW		224			; 루트 디렉토리 영역의 크기(보통은 224엔트리로 한다)
+		DW		512				; 1섹터 크기(512로 해야 함)
+		DB		1				; 클러스터 크기(1섹터로 해야 함)
+		DW		1				; FAT가 어디에서 시작될까(보통은 1 섹터째부터)
+		DB		2				; FAT 개수(2로 해야 함)
+		DW		224				; 루트 디렉토리 영역의 크기(보통은 224엔트리로 한다)
 		DW		2880			; 드라이브 크기(2880섹터로 해야 함)
 		DB		0xf0			; 미디어 타입(0xf0로 해야 함)
-		DW		9			; FAT영역의 길이(9섹터로 해야 함)
-		DW		18			; 1트럭에 몇개의 섹터가 있을까(18로 해야 함)
-		DW		2			; 헤드 수(2로 해야 함)
-		DD		0			; 파티션을 사용하지 않기 때문에 여기는 반드시 0
+		DW		9				; FAT영역의 길이(9섹터로 해야 함)
+		DW		18				; 1트럭에 몇개의 섹터가 있을까(18로 해야 함)
+		DW		2				; 헤드 수(2로 해야 함)
+		DD		0				; 파티션을 사용하지 않기 때문에 여기는 반드시 0
 		DD		2880			; 드라이브 크기를 한번 더 write
 		DB		0,0,0x29		; 잘 모르지만 이 값으로 해 두면 좋은 것 같다
 		DD		0xffffffff		; 아마, 볼륨 시리얼 번호
-		DB		"HARIBOTEOS "		; 디스크 이름(11바이트)
+		DB		"HARIBOTEOS "	; 디스크 이름(11바이트)
 		DB		"FAT12   "		; 포맷 이름(8바이트)
 		RESB	18				; 우선 18바이트를 비어 둔다
 
@@ -55,7 +55,7 @@ retry:
 		ADD		SI, 1			; SI에 1을 더한다
 		CMP		SI, 5			; SI와 5를 비교
 		JAE		error			; SI >= 5 이면 error에
-		MOV		AH,0x00
+	 	MOV		AH,0x00
 		MOV		DL, 0x00		; A드라이브
 		INT		0x13			; 드라이브의 리셋트
 		JMP		retry
@@ -77,7 +77,7 @@ next:
 
 ; 다 읽었으므로 haribote.sys를 실행한다!
 
-		MOV		[0x0ff0], CH		; IPL이 어디까지 읽었는지를 메모
+		MOV		[0x0ff0], CH	; IPL이 어디까지 읽었는지를 메모
 		JMP		0xc200
 
 error:
@@ -94,14 +94,15 @@ putloop:
 		INT		0x10			; 비디오 BIOS 호출
 		JMP		putloop
 fin:
-		HLT					; 무엇인가 있을 때까지 CPU를 정지시킨다
-		JMP		fin			; Endless Loop
+		HLT						; 무엇인가 있을 때까지 CPU를 정지시킨다
+		JMP		fin				; Endless Loop
+
 msg:
 		DB		0x0a, 0x0a		; 개행을 2개
 		DB		"load error"
 		DB		0x0a			; 개행
 		DB		0
 
-		RESB	0x7dfe-$			; 0x7dfe까지를 0x00로 채우는 명령
+		RESB	0x7dfe-$		; 0x7dfe까지를 0x00로 채우는 명령
 
-		DB		0x55, 0xaa
+		DB		0x55, 0xaa		; 부트섹터 끝 매직코드
