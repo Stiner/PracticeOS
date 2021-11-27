@@ -13,7 +13,3 @@ OS 만들기 연습장
 ---
 * http://gnuwin32.sourceforge.net/packages/make.htm
 * https://code.visualstudio.com/
-
-열기
----
-* 메뉴 -> "파일" -> "작업 영역 열기" -> practiceOS.code-workspace
