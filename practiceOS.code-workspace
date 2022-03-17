@@ -10,5 +10,7 @@
 			"path": "practice_nask"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"makefile.extensionOutputFolder": "./.vscode"
+	}
 }
