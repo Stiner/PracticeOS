@@ -1,17 +1,23 @@
 TOOLPATH = ../z_tools/
 INCPATH  = ../z_tools/haribote/
 
-MAKE     = $(TOOLPATH)make.exe -r
-NASK     = $(TOOLPATH)nask.exe
-CC1      = $(TOOLPATH)cc1.exe -I$(INCPATH) -Os -Wall -quiet
-GAS2NASK = $(TOOLPATH)gas2nask.exe -a
-OBJ2BIM  = $(TOOLPATH)obj2bim.exe
-BIM2HRB  = $(TOOLPATH)bim2hrb.exe
+MAKE     = $(TOOLPATH)make -r
+NASK     = $(TOOLPATH)nask
+CC1      = $(TOOLPATH)gocc1 -I$(INCPATH) -Os -Wall -quiet
+GAS2NASK = $(TOOLPATH)gas2nask -a
+OBJ2BIM  = $(TOOLPATH)obj2bim
+BIM2HRB  = $(TOOLPATH)bim2hrb
 RULEFILE = $(TOOLPATH)haribote/haribote.rul
-EDIMG    = $(TOOLPATH)edimg.exe
-IMGTOL   = $(TOOLPATH)imgtol.com
-COPY     = copy
-DEL      = del
+EDIMG    = $(TOOLPATH)edimg
+IMGTOL   = $(TOOLPATH)imgtol
+
+ifeq ($(OS),Windows_NT)
+    COPY = copy
+    DEL  = del
+else
+    COPY = cp
+    DEL  = rm
+endif
 
 # 디폴트 동작
 
